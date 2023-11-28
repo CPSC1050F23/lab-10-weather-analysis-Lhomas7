@@ -21,7 +21,7 @@ class DataCalculator:
         avg_temp2 = avg_temp // 1
         if avg_temp - avg_temp2 >= 0.5:
             avg_temp2 += 1
-        return avg_temp2
+        return round(avg_temp2)
         
 
     def calculate_maximum_temperature(self):
@@ -29,21 +29,21 @@ class DataCalculator:
         for temp in self.weather_data['temperature']:
             if temp > max_temp:
                 max_temp = temp
-        return max_temp
+        return round(max_temp)
 
     def calculate_minimum_temperature(self):
         min_temp = self.weather_data['temperature'][0]
         for temp in self.weather_data['temperature']:
             if temp < min_temp:
                 min_temp = temp
-        return min_temp
+        return round(min_temp)
 
     def calculate_average_precipitation(self):
         sum_prec = 0
         for precip in self.weather_data['precipitation']:
             sum_prec += precip
         avg_precip = sum_prec / len(self.weather_data['precipitation'])
-        return avg_precip
+        return round(avg_precip, 2)
 
     def summarize_weather_conditions(self):
         weather_summary = {}

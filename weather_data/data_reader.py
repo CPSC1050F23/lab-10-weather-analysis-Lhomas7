@@ -40,8 +40,8 @@ class DataReader:
                     exit(1)
                 else:
                     data['weather'].append(entry['weather'])
-                    data['temperature'].append(entry['temperature'])
-                    data['precipitation'].append(entry['precipitation'])
+                    data['temperature'].append(int(entry['temperature']))
+                    data['precipitation'].append(float(entry['precipitation']))
         f.close()
         return data
 
@@ -50,29 +50,28 @@ class DataReader:
         expected_keys = ['temperature', 'weather', 'precipitation']
         with open(self.file_path,'r') as f:
             csv_data = csv.DictReader(f)
-
-            if not isinstance(csv_data, list):
-                print("Error in data format: could not convert string to float: ''. Check the numeric values in the file.")
+            missing_keys = []
+            for key in expected_keys:
+                if key not in csv_data.fieldnames:
+                    missing_keys.append(key)
+            if missing_keys != []:
+                key_str = ''
+                for i in range(len(missing_keys)):
+                    key_str += missing_keys[i]
+                    if missing_keys[i] == missing_keys[-1]:
+                        continue
+                    else:
+                        key_str += ', '
+                print(f'Some entries are missing required keys: {key_str}.')
                 exit(1)
-            for entry in csv_data.fieldnames:
-                missing_keys = []
-                for key in expected_keys:
-                    if key not in entry:
-                        missing_keys.append(key)
-                if missing_keys:
-                    key_str = ''
-                    for i in range(len(missing_keys)):
-                        key_str += missing_keys[i]
-                        if missing_keys[i] == missing_keys[-1]:
-                            continue
-                        else:
-                            key_str += ', '
-                    print(f'Some entries are missing required keys: {key_str}.')
-                    exit(1)
+                    
             for entry in csv_data:
+                if entry['temperature'] == '':
+                    print("Error in data format: could not convert string to float: ''. Check the numeric values in the file.")
+                    exit(1)
                 data['weather'].append(entry['weather'])
-                data['temperature'].append(entry['temperature'])
-                data['precipitation'].append(entry['precipitation'])
+                data['temperature'].append(int(entry['temperature']))
+                data['precipitation'].append(float(entry['precipitation']))
         f.close()
         return data
 
