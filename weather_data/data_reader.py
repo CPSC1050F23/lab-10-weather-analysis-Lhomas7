@@ -16,8 +16,8 @@ class DataReader:
             return self.read_weather_data_csv()
 
     def read_weather_data_json(self):
-        data = {'weather': [], 'temperature': [], 'precipitation': []}
-        expected_keys = ['weather', 'temperature', 'precipitation']
+        data = {'temperature': [], 'weather': [], 'precipitation': []}
+        expected_keys = ['temperature', 'weather', 'precipitation']
         with open(self.file_path,'r') as f:
             json_data = json.load(f)
             if not isinstance(json_data, list):
@@ -46,8 +46,8 @@ class DataReader:
         return data
 
     def read_weather_data_csv(self):
-        data = {'weather': [], 'temperature': [], 'precipitation': []}
-        expected_keys = ['weather', 'temperature', 'precipitation']
+        data = {'temperature': [], 'weather': [], 'precipitation': []}
+        expected_keys = ['temperature', 'weather', 'precipitation']
         with open(self.file_path,'r') as f:
             csv_data = csv.DictReader(f)
 
