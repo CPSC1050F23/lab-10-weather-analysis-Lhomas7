@@ -29,7 +29,14 @@ class DataReader:
                     if key not in entry:
                         missing_keys.append(key)
                 if missing_keys:
-                    print('Some of the keys were missing!')
+                    key_str = ''
+                    for i in range(len(missing_keys)):
+                        key_str += missing_keys[i]
+                        if missing_keys[i] = missing_keys[-1]:
+                            continue
+                        else:
+                            key_str += ','
+                    print(f'Some entries are missing required keys: {key_str}')
                     exit(1)
                 else:
                     data['weather'].append(entry['weather'])
@@ -53,7 +60,14 @@ class DataReader:
                     if key not in entry:
                         missing_keys.append(key)
                 if missing_keys:
-                    print('Some of the keys were missing!')
+                    key_str = ''
+                    for i in range(len(missing_keys)):
+                        key_str += missing_keys[i]
+                        if missing_keys[i] = missing_keys[-1]:
+                            continue
+                        else:
+                            key_str += ','
+                    print(f'Some entries are missing required keys: {key_str}')
                     exit(1)
             for entry in csv_data:
                 data['weather'].append(entry['weather'])

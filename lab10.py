@@ -16,7 +16,7 @@ def main():
     output_file = sys.argv[2]
 
     if file_type not in ['csv', 'json']:
-        print(f'Invalid file type!')
+        print(f'Invalid file type {file_type} detected! File type must be csv or json.')
         exit(1)
     weather_data = None
     reader = DataReader(file_type,file_path)
