@@ -43,11 +43,10 @@ class DataCalculator:
     def summarize_weather_conditions(self):
         weather_summary = {}
         for condition in self.weather_data['weather']:
-            for weather in condition:
-                if weather in weather_summary:
-                    weather_summary[weather] += 1
+                if condition in weather_summary:
+                    weather_summary[condition] += 1
                 else:
-                    weather_summary[weather] = 1
+                    weather_summary[condition] = 1
 
         return weather_summary
 
