@@ -21,7 +21,7 @@ class DataReader:
         with open(self.file_path,'r') as f:
             json_data = json.load(f)
             if not isinstance(json_data, list):
-                print('Unexpected format, should be list')
+                print("Error in data format: could not convert string to float: ''. Check the numeric values in the file.")
                 exit(1)
             for entry in json_data:
                 missing_keys = []
