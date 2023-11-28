@@ -18,11 +18,14 @@ def main():
     if file_type not in ['csv', 'json']:
         print(f'Invalid file type!')
         exit(1)
+    weather_data = None
+    reader = DataReader(file_type,file_path)
+    weather_data = reader()
+    calculator = DataCalculator(weather_data, output_file)
+    calculator()
 
-    reader1 = DataReader(file_type, file_path)
-    calculator = DataCalculator(reader1.__call__(),file_path)
-    calculator.__call__()
-    calculator.display_results(average_temp, max_temp, min_temp, average_precipitation, weather_summary)
+
+
 
 if __name__ == "__main__":
     main()

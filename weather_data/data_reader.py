@@ -16,47 +16,50 @@ class DataReader:
             return self.read_weather_data_csv()
 
     def read_weather_data_json(self):
-        data_json = {}
-        prption = []
-        wthr = []
-        tmpre = []
+        data = {'weather': [], 'temperature': [], 'precipitation': []}
+        expected_keys = ['weather', 'temperature', 'precipitation']
         with open(self.file_path,'r') as f:
-            weather_list = f.readlines()
-            if not isinstance(weather_list, list):
+            json_data = json.load(f)
+            if not isinstance(json_data, list):
                 print('Unexpected format, should be list')
                 exit(1)
-            for line in weather_list:
-                if 'temperature' in line:
-                    line = line.split()
-                    tmpre.append(int(line[1][0:-1]))
-                if 'precipitation' in line:
-                    line = line.split()
-                    prption.append(float(line[1][0:-1]))
-                if 'weather' in line:
-                    line = line.split()
-                    wthr.append(line[1][0:-1])
-        data_json['temperature'] = tmpre
-        data_json['weather'] = wthr
-        data_json['precipitation'] = prption
-        return data_json
+            for entry in json_data:
+                missing_keys = []
+                for key in expected_keys:
+                    if key not in entry:
+                        missing_keys.append(key)
+                if missing_keys:
+                    print('Some of the keys were missing!')
+                    exit(1)
+                else:
+                    data['weather'].append(entry['weather'])
+                    data['temperature'].append(entry['temperature'])
+                    data['precipitation'].append(entry['precipitation'])
+        f.close()
+        return data
+
     def read_weather_data_csv(self):
-        data_csv = {}
-        prption = []
-        wthr = []
-        tmpre = []
+        data = {'weather': [], 'temperature': [], 'precipitation': []}
+        expected_keys = ['weather', 'temperature', 'precipitation']
         with open(self.file_path,'r') as f:
-            weather_data_reader = csv.reader(f)
-            first_row = True 
-            for row in weather_data_reader:
-                if first_row:
-                    first_row = False
-                    continue
-                tmpre.append(int(row[0]))
-                wthr.append(row[1])
-                prption.append(float(row[2]))
-        data_csv['weather'] = wthr
-        data_csv['temperature'] = tmpre
-        data_csv['precipitation'] = prption
-        return data_csv
+            csv_data = csv.DictReader(f)
+
+            if not isinstance(csv_data, list):
+                print('Unexpected format, should be list')
+                exit(1)
+            for entry in csv_data.fieldnames:
+                missing_keys = []
+                for key in expected_keys:
+                    if key not in entry:
+                        missing_keys.append(key)
+                if missing_keys:
+                    print('Some of the keys were missing!')
+                    exit(1)
+            for entry in csv_data:
+                data['weather'].append(entry['weather'])
+                data['temperature'].append(entry['temperature'])
+                data['precipitation'].append(entry['precipitation'])
+        f.close()
+        return data
 
         
