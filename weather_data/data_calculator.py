@@ -17,7 +17,12 @@ class DataCalculator:
         self.display_results(average_temp, max_temp, min_temp, average_precipitation, weather_summary)
 
     def calculate_average_temperature(self):
-        return sum(self.weather_data['temperature']) / len(self.weather_data['temperature'])
+        avg_temp = sum(self.weather_data['temperature']) / len(self.weather_data['temperature'])
+        avg_temp2 = avg_temp // 1
+        if avg_temp - avg_temp2 >= 0.5:
+            avg_temp2 += 1
+        return avg_temp2
+        
 
     def calculate_maximum_temperature(self):
         max_temp = 0
@@ -52,7 +57,7 @@ class DataCalculator:
 
     def display_results(self, average_temp, max_temp, min_temp, average_precipitation, weather_summary):
         with open(self.file_path,'w') as f:
-            f.write(f"Average Temperature: {average_temp:.2f}\n")
+            f.write(f"Average Temperature: {average_temp:.0f}\n")
             f.write(f"Maximum Temperature: {max_temp}\n")
             f.write(f"Minimum Temperature: {min_temp}\n")
             f.write(f"Average Precipitation: {average_precipitation:.2f}\n")
