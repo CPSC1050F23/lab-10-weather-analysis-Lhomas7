@@ -35,7 +35,7 @@ class DataReader:
                         if missing_keys[i] == missing_keys[-1]:
                             continue
                         else:
-                            key_str += ','
+                            key_str += ', '
                     print(f'Some entries are missing required keys: {key_str}')
                     exit(1)
                 else:
@@ -66,7 +66,7 @@ class DataReader:
                         if missing_keys[i] == missing_keys[-1]:
                             continue
                         else:
-                            key_str += ','
+                            key_str += ', '
                     print(f'Some entries are missing required keys: {key_str}')
                     exit(1)
             for entry in csv_data:
