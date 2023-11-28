@@ -52,7 +52,7 @@ class DataReader:
             csv_data = csv.DictReader(f)
 
             if not isinstance(csv_data, list):
-                print('Unexpected format, should be list')
+                print("Error in data format: could not convert string to float: ''. Check the numeric values in the file.")
                 exit(1)
             for entry in csv_data.fieldnames:
                 missing_keys = []
