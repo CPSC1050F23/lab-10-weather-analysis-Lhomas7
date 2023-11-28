@@ -36,7 +36,7 @@ class DataReader:
                             continue
                         else:
                             key_str += ', '
-                    print(f'Some entries are missing required keys: {key_str}')
+                    print(f'Some entries are missing required keys: {key_str}.')
                     exit(1)
                 else:
                     data['weather'].append(entry['weather'])
@@ -67,7 +67,7 @@ class DataReader:
                             continue
                         else:
                             key_str += ', '
-                    print(f'Some entries are missing required keys: {key_str}')
+                    print(f'Some entries are missing required keys: {key_str}.')
                     exit(1)
             for entry in csv_data:
                 data['weather'].append(entry['weather'])
