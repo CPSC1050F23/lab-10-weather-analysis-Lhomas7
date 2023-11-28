@@ -32,7 +32,7 @@ class DataReader:
                     key_str = ''
                     for i in range(len(missing_keys)):
                         key_str += missing_keys[i]
-                        if missing_keys[i] = missing_keys[-1]:
+                        if missing_keys[i] == missing_keys[-1]:
                             continue
                         else:
                             key_str += ','
@@ -63,7 +63,7 @@ class DataReader:
                     key_str = ''
                     for i in range(len(missing_keys)):
                         key_str += missing_keys[i]
-                        if missing_keys[i] = missing_keys[-1]:
+                        if missing_keys[i] == missing_keys[-1]:
                             continue
                         else:
                             key_str += ','
