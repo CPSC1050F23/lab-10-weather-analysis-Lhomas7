@@ -1,5 +1,5 @@
-Average Temperature: 45.96774193548387
+Average Temperature: 45.97
 Maximum Temperature: 64
 Minimum Temperature: 14
-Average Precipitation: 0.532258064516129
+Average Precipitation: 0.53
 Weather Summary: {'s': 19, 'u': 13, 'n': 32, 'y': 34, 'o': 16, 'w': 9, 'p': 5, 'a': 14, 'r': 14, 't': 7, 'l': 10, ' ': 5, 'c': 7, 'd': 5, 'i': 7, 'v': 2, 'e': 2}

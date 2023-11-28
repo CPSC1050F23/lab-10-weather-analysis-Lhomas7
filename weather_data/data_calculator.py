@@ -53,10 +53,10 @@ class DataCalculator:
 
     def display_results(self, average_temp, max_temp, min_temp, average_precipitation, weather_summary):
         with open(self.file_path,'w') as f:
-            f.write(f"Average Temperature: {average_temp}\n")
+            f.write(f"Average Temperature: {average_temp:.2f}\n")
             f.write(f"Maximum Temperature: {max_temp}\n")
             f.write(f"Minimum Temperature: {min_temp}\n")
-            f.write(f"Average Precipitation: {average_precipitation}\n")
+            f.write(f"Average Precipitation: {average_precipitation:.2f}\n")
             f.write(f"Weather Summary: {weather_summary}\n")
         f.close()
 
