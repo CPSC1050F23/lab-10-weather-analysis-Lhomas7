@@ -1,20 +1,21 @@
+#import standard library modules and json/csv files
 import json
 import csv
 import sys
 import os
-
+#define class to read the weather report based on file type
 class DataReader:
-    
+    #initialize file path and type
     def __init__(self, file_type, file_path):
         self.file_type = file_type
         self.file_path = file_path
-
+    #use __call__ function to direct to which file type to read
     def __call__(self):
         if self.file_type == 'json':
             return self.read_weather_data_json()
         elif self.file_type == 'csv':
             return self.read_weather_data_csv()
-
+    # read the weather data from a json file and validate all keys are present
     def read_weather_data_json(self):
         data = {'temperature': [], 'weather': [], 'precipitation': []}
         expected_keys = ['temperature', 'weather', 'precipitation']
@@ -44,7 +45,7 @@ class DataReader:
                     data['precipitation'].append(float(entry['precipitation']))
         f.close()
         return data
-
+    # read weather data from csv file and validate all keys are present
     def read_weather_data_csv(self):
         data = {'temperature': [], 'weather': [], 'precipitation': []}
         expected_keys = ['temperature', 'weather', 'precipitation']
